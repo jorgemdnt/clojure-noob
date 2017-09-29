@@ -17,3 +17,8 @@
     (let [input [1 1 2 2]
           returned-set #{2 3}]
       (is (= returned-set (mapset inc input))))))
+
+(deftest find-largest-two-test
+  (testing "Should return largest and second largest numbers in collection"
+    (let [number-list [32 2413 432 1 3 9999]]
+      (is (= [9999 2413] (find-largest-two number-list))))))
