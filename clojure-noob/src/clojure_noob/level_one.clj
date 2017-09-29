@@ -33,6 +33,39 @@
             (and (> head sec-largest) (> largest head)) head
             :else sec-largest))))))
 
-(defn square-largest-two
+(defn- absolute
+  [x]
+  (if (< x 0)
+    (* x -1)
+    x))
+
+(defn- square
+  [x]
+  (* x x))
+
+(defn- good-enough?
+  [guess x]
+  (< (absolute (- (square guess) x)) 0.001))
+
+(defn- average
+  [x y]
+  (/ (+ x y) 2))
+
+(defn- improve
+  [guess x]
+  (average guess (/ x guess)))
+
+(defn- square-root-iter
+  [guess x]
+  (loop [guessing guess]
+    (if (good-enough? guessing x)
+      guessing
+      (recur (improve guessing x)))))
+
+(defn square-root
+  [x]
+  (square-root-iter 1.0 x))
+
+(defn square-root-largest-two
   [nums]
   (map #(Math/sqrt %) (find-largest-two nums)))
