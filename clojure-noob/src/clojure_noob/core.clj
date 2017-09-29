@@ -38,3 +38,7 @@
             (> head largest) largest
             (and (> head sec-largest) (> largest head)) head
             :else sec-largest))))))
+
+(defn square-largest-two
+  [nums]
+  (map #(Math/sqrt %) (find-largest-two nums)))
