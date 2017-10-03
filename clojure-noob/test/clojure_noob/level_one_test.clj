@@ -39,3 +39,17 @@
   (testing "Should return collection with square-root roots of largest two numbers in collection"
     (let [number-list [1 121 9 3 12 36 12]]
       (is (= [11.0 6.0] (square-root-largest-two number-list))))))
+
+(deftest id-test
+  (testing "Should return self object passed into function"
+    (is (= 20139 (id 20139)))))
+
+(deftest compose-test
+  (testing "Should compose two functions"
+    (let [add-two #(+ 2 %)
+          subtract-one #(- % 1)
+          composed-calc (compose add-two subtract-one)]
+      (is (= (add-two (subtract-one 5)) (composed-calc 5)))))
+  (testing "Should respect id function"
+    (let [composed-id (compose id id)]
+      (is (= 5 (composed-id 5))))))

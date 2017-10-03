@@ -69,3 +69,11 @@
 (defn square-root-largest-two
   [nums]
   (map #(Math/sqrt %) (find-largest-two nums)))
+
+(defn id
+  [x]
+  x)
+
+(defn compose
+  [f g]
+  #(-> % g f))
